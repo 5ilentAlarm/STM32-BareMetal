@@ -24,7 +24,7 @@ void MCP23017_PIN_DIRECTION(uint8_t address, uint8_t port, uint8_t setPins) {
     //printf("Direction Set!\r\n");
 }
 
-void MCP3017_PIN_WRITE(uint8_t address, uint8_t gpioPort, uint8_t writePins) {
+void MCP23017_PIN_WRITE(uint8_t address, uint8_t gpioPort, uint8_t writePins) {
     //Set IO0 as 1
     I2C1_Master_Send_Address(address); //"OPCODE"
     I2C1_Master_Send_Data(gpioPort); //Access GPIOA
