@@ -13,15 +13,15 @@ else
   RM = rm -rf
 endif
 
-build: firmware.bin
+build: build/firmware.bin
 
-firmware.elf: cmsis_core lib/ADS1115.h lib/MCP23017.h stm32f401xe.h stm32f401re.h link.ld Makefile $(SOURCES) 
+build/firmware.elf: cmsis_core lib/ADS1115.h lib/MCP23017.h stm32f401xe.h stm32f401re.h link.ld Makefile $(SOURCES) 
 	arm-none-eabi-gcc $(SOURCES) $(CFLAGS) $(CFLAGS_EXTRA) $(LDFLAGS) -o $@
 
-firmware.bin: firmware.elf
+build/firmware.bin: build/firmware.elf
 	arm-none-eabi-objcopy -O binary $< $@
 
-flash: firmware.bin
+flash: build/firmware.bin
 	st-flash --reset write $< 0x8000000
 
 cmsis_core:
